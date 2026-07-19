@@ -1,15 +1,30 @@
-FROM cronet/manager.io:latest
+FROM debian:bookworm-slim
 
-USER root
+LABEL org.opencontainers.image.title="Manager Server"
+LABEL org.opencontainers.image.source="https://github.com/WhiteKnightSTU/manager-server-docker"
+
+ENV ASPNETCORE_URLS=http://+:8080
+ENV DOTNET_RUNNING_IN_CONTAINER=true
 
 RUN apt-get update && \
-    apt-get install -y curl && \
+    apt-get install -y --no-install-recommends \
+        ca-certificates \
+        curl \
+        libicu72 \
+        libssl3 \
+        zlib1g && \
     rm -rf /var/lib/apt/lists/*
 
-RUN rm -rf /opt/manager-server/* && \
-    curl -L https://github.com/Manager-io/Manager/releases/latest/download/ManagerServer-linux-x64.tar.gz \
-    | tar -xz -C /opt/manager-server
+WORKDIR /opt/manager-server
+
+RUN curl -L \
+    https://github.com/Manager-io/Manager/releases/latest/download/ManagerServer-linux-x64.tar.gz \
+    | tar -xz
 
 RUN chmod +x /opt/manager-server/ManagerServer
 
-USER root
+VOLUME ["/data"]
+
+EXPOSE 8080
+
+CMD ["/opt/manager-server/ManagerServer","--urls","http://*:8080","--path","/data"]
