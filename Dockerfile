@@ -9,13 +9,12 @@ ENV DOTNET_RUNNING_IN_CONTAINER=true
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
         ca-certificates \
-        chromium \
         curl \
         libicu72 \
         libssl3 \
         libc6 \
+        zlib1g \
         libglib2.0-0 \
-        libgobject-2.0-0 \
         libnspr4 \
         libnss3 \
         libatk1.0-0 \
@@ -35,8 +34,7 @@ RUN apt-get update && \
         libxdamage1 \
         libxfixes3 \
         libxrandr2 \
-        libatspi2.0-0
-        zlib1g && \
+        libatspi2.0-0 && \
     rm -rf /var/lib/apt/lists/*
 
 WORKDIR /opt/manager-server
