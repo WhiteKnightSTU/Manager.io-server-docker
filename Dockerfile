@@ -14,6 +14,28 @@ RUN apt-get update && \
         libicu72 \
         libssl3 \
         libc6 \
+        libglib2.0-0 \
+        libgobject-2.0-0 \
+        libnspr4 \
+        libnss3 \
+        libatk1.0-0 \
+        libatk-bridge2.0-0 \
+        libdbus-1-3 \
+        libcups2 \
+        libexpat1 \
+        libxcb1 \
+        libxkbcommon0 \
+        libasound2 \
+        libgbm1 \
+        libx11-6 \
+        libxext6 \
+        libcairo2 \
+        libpango-1.0-0 \
+        libxcomposite1 \
+        libxdamage1 \
+        libxfixes3 \
+        libxrandr2 \
+        libatspi2.0-0
         zlib1g && \
     rm -rf /var/lib/apt/lists/*
 
