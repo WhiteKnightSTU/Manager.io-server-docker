@@ -9,6 +9,7 @@ ENV DOTNET_RUNNING_IN_CONTAINER=true
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
         ca-certificates \
+        chromium \
         curl \
         libicu72 \
         libssl3 \
